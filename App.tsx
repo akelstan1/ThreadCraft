@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { AuthScreen } from './components/AuthScreen';
+import { OnboardingApiKey } from './components/OnboardingApiKey';
 import { StepInput } from './components/StepInput';
 import { StepStrategy } from './components/StepStrategy';
 import { StepResult } from './components/StepResult';
@@ -282,6 +283,13 @@ function App() {
     setStep(AppStep.STRATEGY);
   };
 
+  const handleOnboardingSaveKey = (key: string) => {
+    if (!userId) return;
+    setApiKeyInput(key);
+    saveSetting(userId, 'gemini_api_key', key);
+    localStorage.setItem('gemini_api_key', key);
+  };
+
   const handleReset = () => {
     setStep(AppStep.INPUT);
     setInputText('');
@@ -289,6 +297,8 @@ function App() {
     setResultData(null);
     setUsedHookIds(new Set());
   };
+
+  const hasApiKey = !!apiKeyInput.trim();
 
   // Loading state
   if (!authChecked) {
@@ -364,7 +374,11 @@ function App() {
           />
         )}
 
-        {step === AppStep.INPUT && (
+        {step === AppStep.INPUT && !hasApiKey && (
+          <OnboardingApiKey onSaveKey={handleOnboardingSaveKey} />
+        )}
+
+        {step === AppStep.INPUT && hasApiKey && (
           <StepInput onNext={handleNextStep} isLoading={isLoading} />
         )}
 
