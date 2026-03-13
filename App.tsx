@@ -37,6 +37,7 @@ function App() {
   const [generatedHooks, setGeneratedHooks] = useState<HookOption[]>([]);
   const [resultData, setResultData] = useState<GeneratedThread | null>(null);
   const [usedHookIds, setUsedHookIds] = useState<Set<string>>(new Set());
+  const [prevStep, setPrevStep] = useState<AppStep>(AppStep.INPUT);
 
   // Check auth on mount
   useEffect(() => {
@@ -322,7 +323,7 @@ function App() {
       <div className="absolute top-4 right-4 z-50 flex items-center gap-2 md:gap-3">
          {step !== AppStep.HISTORY && (
             <button
-              onClick={() => setStep(AppStep.HISTORY)}
+              onClick={() => { setPrevStep(step); setStep(AppStep.HISTORY); }}
               className="p-2 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-all border border-neutral-700 hover:border-neutral-500"
               title="Мои черновики"
             >
@@ -368,7 +369,7 @@ function App() {
         {step === AppStep.HISTORY && (
           <HistoryView
             history={history}
-            onBack={handleReset}
+            onBack={() => setStep(prevStep)}
             onSelect={handleSelectHistoryItem}
             onDelete={handleDeleteHistoryItem}
           />
