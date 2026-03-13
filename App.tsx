@@ -51,12 +51,12 @@ function App() {
     };
     checkUser();
 
-    const { data: { subscription } } = onAuthStateChange((user) => {
-      if (user) {
+    const { data: { subscription } } = onAuthStateChange((event, user) => {
+      if (event === 'SIGNED_IN' && user) {
         setUserId(user.id);
         setUserEmail(user.email || '');
-        if (step === AppStep.AUTH) setStep(AppStep.INPUT);
-      } else {
+        setStep((prev: AppStep) => prev === AppStep.AUTH ? AppStep.INPUT : prev);
+      } else if (event === 'SIGNED_OUT') {
         setUserId(null);
         setUserEmail('');
         setStep(AppStep.AUTH);

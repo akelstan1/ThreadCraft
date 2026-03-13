@@ -30,9 +30,9 @@ export const getUser = async () => {
   return user;
 };
 
-export const onAuthStateChange = (callback: (user: any) => void) => {
-  return supabase.auth.onAuthStateChange((_event, session) => {
-    callback(session?.user ?? null);
+export const onAuthStateChange = (callback: (event: string, user: any) => void) => {
+  return supabase.auth.onAuthStateChange((event, session) => {
+    callback(event, session?.user ?? null);
   });
 };
 
