@@ -304,8 +304,8 @@ function App() {
   // Loading state
   if (!authChecked) {
     return (
-      <div className="min-h-screen bg-[#101010] flex items-center justify-center">
-        <div className="animate-pulse text-neutral-500">Загрузка...</div>
+      <div className="min-h-screen bg-[#f0f2f8] flex items-center justify-center">
+        <div className="animate-pulse text-slate-400">Загрузка...</div>
       </div>
     );
   }
@@ -316,15 +316,15 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#101010] text-white selection:bg-purple-500/30 relative">
-      <div className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 z-50"></div>
+    <div className="min-h-screen bg-[#f0f2f8] text-slate-800 selection:bg-indigo-200 relative">
+      <div className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-400 z-50"></div>
 
       {/* Header Controls */}
       <div className="absolute top-4 right-4 z-50 flex items-center gap-2 md:gap-3">
          {step !== AppStep.HISTORY && (
             <button
               onClick={() => { setPrevStep(step); setStep(AppStep.HISTORY); }}
-              className="p-2 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-all border border-neutral-700 hover:border-neutral-500"
+              className="p-2 rounded-xl bg-white hover:bg-slate-50 text-slate-400 hover:text-indigo-600 transition-all border border-slate-200 shadow-sm"
               title="Мои черновики"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -335,7 +335,7 @@ function App() {
 
          <button
            onClick={() => setIsSettingsOpen(true)}
-           className="p-2 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-all border border-neutral-700 hover:border-neutral-500"
+           className="p-2 rounded-xl bg-white hover:bg-slate-50 text-slate-400 hover:text-indigo-600 transition-all border border-slate-200 shadow-sm"
            title="Настройки"
          >
            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -345,8 +345,8 @@ function App() {
          </button>
 
          <div className="flex items-center gap-2 ml-2">
-           <span className="hidden sm:inline text-xs text-neutral-500 truncate max-w-[150px]">{userEmail}</span>
-           <button onClick={handleLogout} className="text-xs text-neutral-500 hover:text-white transition-colors underline decoration-neutral-700 underline-offset-4">
+           <span className="hidden sm:inline text-xs text-slate-400 truncate max-w-[150px]">{userEmail}</span>
+           <button onClick={handleLogout} className="text-xs text-slate-400 hover:text-indigo-600 transition-colors underline decoration-slate-300 underline-offset-4">
              Выйти
            </button>
          </div>
@@ -410,7 +410,7 @@ function App() {
         )}
       </main>
 
-      <footer className="fixed bottom-4 left-4 text-xs text-neutral-700">
+      <footer className="fixed bottom-4 left-4 text-xs text-slate-400">
         <span className="opacity-50">ThreadCraft by Aleksandr Kalinin</span>
       </footer>
     </div>

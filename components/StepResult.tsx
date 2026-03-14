@@ -85,23 +85,23 @@ export const StepResult: React.FC<StepResultProps> = ({
       <div className="flex items-center justify-between mb-8">
          <div className="flex items-center gap-4">
            {onBackToHooks && (
-             <button onClick={onBackToHooks} className="text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-2 font-medium">
+             <button onClick={onBackToHooks} className="text-indigo-600 hover:text-indigo-700 transition-colors flex items-center gap-2 font-medium">
                ← Другой хук
              </button>
            )}
-           <button onClick={onReset} className="text-neutral-500 hover:text-white transition-colors flex items-center gap-2">
+           <button onClick={onReset} className="text-slate-400 hover:text-slate-600 transition-colors flex items-center gap-2">
              {onBackToHooks ? 'Сначала' : '← Начать заново'}
            </button>
          </div>
          <div className="flex gap-2">
-            <span className="px-3 py-1 bg-purple-500/10 text-purple-400 text-xs rounded-full border border-purple-500/20">
+            <span className="px-3 py-1 bg-indigo-50 text-indigo-600 text-xs rounded-full border border-indigo-100 font-medium">
                {data.type}
             </span>
          </div>
       </div>
 
       <div className="relative mb-8">
-        <div className="absolute left-[26px] top-8 bottom-8 w-0.5 bg-neutral-800"></div>
+        <div className="absolute left-[26px] top-8 bottom-8 w-0.5 bg-slate-200"></div>
 
         <div className="space-y-6">
             {data.posts.map((post, index) => (
@@ -109,8 +109,8 @@ export const StepResult: React.FC<StepResultProps> = ({
                     <div className="absolute left-0 top-0 w-14 h-14 flex items-center justify-center">
                         <div className={`w-10 h-10 rounded-full border flex items-center justify-center text-sm font-bold z-10 transition-all ${
                             isRefining
-                                ? 'bg-neutral-900 border-neutral-800 text-neutral-600'
-                                : 'bg-neutral-800 border-neutral-700 text-neutral-400 group-hover:border-purple-500'
+                                ? 'bg-slate-100 border-slate-200 text-slate-300'
+                                : 'bg-white border-slate-200 text-slate-500 group-hover:border-indigo-400 group-hover:text-indigo-600 shadow-sm'
                         }`}>
                             {index + 1}
                         </div>
@@ -118,8 +118,8 @@ export const StepResult: React.FC<StepResultProps> = ({
 
                     <div className={`rounded-2xl p-5 relative transition-all ${
                         isRefining
-                            ? 'bg-neutral-900/50 border border-neutral-800/50 opacity-50 blur-[1px]'
-                            : 'bg-neutral-900 border border-neutral-800 hover:border-neutral-700 focus-within:border-purple-500 focus-within:ring-1 focus-within:ring-purple-500/20'
+                            ? 'bg-white/50 border border-slate-200/50 opacity-50 blur-[1px]'
+                            : 'bg-white border border-slate-200 hover:border-slate-300 focus-within:border-indigo-400 focus-within:ring-2 focus-within:ring-indigo-100 shadow-sm hover:shadow-md'
                     }`}>
                         <button
                            onClick={() => {
@@ -127,7 +127,7 @@ export const StepResult: React.FC<StepResultProps> = ({
                                onRemovePost(index);
                              }
                            }}
-                           className="absolute top-3 right-3 p-2 rounded-lg bg-transparent text-neutral-600 hover:text-red-400 hover:bg-neutral-800 transition-all z-20"
+                           className="absolute top-3 right-3 p-2 rounded-lg bg-transparent text-slate-300 hover:text-red-500 hover:bg-red-50 transition-all z-20"
                            title="Удалить слайд"
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -145,21 +145,21 @@ export const StepResult: React.FC<StepResultProps> = ({
                                 onUpdatePost(index, e.target.value);
                                 adjustHeight(e.target);
                             }}
-                            className="w-full bg-transparent text-neutral-200 leading-relaxed mb-2 text-[15px] outline-none resize-none overflow-hidden pr-8"
+                            className="w-full bg-transparent text-slate-700 leading-relaxed mb-2 text-[15px] outline-none resize-none overflow-hidden pr-8"
                             spellCheck={false}
                         />
 
-                        <div className="flex items-center justify-between pt-2 border-t border-neutral-800">
-                            <span className={`text-xs ${post.charCount > 500 ? 'text-red-500' : 'text-neutral-500'}`}>
+                        <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                            <span className={`text-xs ${post.charCount > 500 ? 'text-red-500 font-bold' : 'text-slate-400'}`}>
                                 {post.charCount} / 500
                             </span>
                             <button
                                 onClick={() => handleCopy(post.content, index)}
                                 disabled={isRefining}
-                                className="text-xs font-medium px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="text-xs font-medium px-3 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-500 transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {copiedIndex === index ? (
-                                    <span className="text-green-400">Скопировано! ✓</span>
+                                    <span className="text-green-600">Скопировано!</span>
                                 ) : (
                                     "Копировать"
                                 )}
@@ -175,9 +175,9 @@ export const StepResult: React.FC<StepResultProps> = ({
       <div className="pl-16 mb-12 grid grid-cols-2 gap-4">
         <button
           onClick={() => onAddPost()}
-          className="py-3 rounded-xl border-2 border-dashed border-neutral-800 text-neutral-500 hover:border-neutral-600 hover:text-white hover:bg-neutral-900 transition-all font-medium flex items-center justify-center gap-2 group"
+          className="py-3 rounded-xl border-2 border-dashed border-slate-200 text-slate-400 hover:border-indigo-300 hover:text-indigo-600 hover:bg-white transition-all font-medium flex items-center justify-center gap-2 group"
         >
-          <div className="w-5 h-5 rounded-full bg-neutral-800 text-neutral-400 flex items-center justify-center group-hover:bg-purple-500 group-hover:text-white transition-colors">
+          <div className="w-5 h-5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center group-hover:bg-indigo-100 group-hover:text-indigo-600 transition-colors">
             +
           </div>
           Слайд
@@ -186,18 +186,18 @@ export const StepResult: React.FC<StepResultProps> = ({
         <div className="relative">
           <button
             onClick={() => setShowCtaPicker(!showCtaPicker)}
-            className="w-full py-3 rounded-xl border-2 border-dashed border-neutral-800 text-neutral-500 hover:border-neutral-600 hover:text-white hover:bg-neutral-900 transition-all font-medium flex items-center justify-center gap-2 group"
+            className="w-full py-3 rounded-xl border-2 border-dashed border-slate-200 text-slate-400 hover:border-indigo-300 hover:text-indigo-600 hover:bg-white transition-all font-medium flex items-center justify-center gap-2 group"
           >
-            <div className="w-5 h-5 rounded-full bg-neutral-800 text-neutral-400 flex items-center justify-center group-hover:bg-purple-500 group-hover:text-white transition-colors">
-              📢
+            <div className="w-5 h-5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center group-hover:bg-indigo-100 group-hover:text-indigo-600 transition-colors">
+              +
             </div>
             Вставить CTA
           </button>
 
           {showCtaPicker && (
-            <div className="absolute top-full right-0 mt-2 w-full bg-[#151515] border border-neutral-700 rounded-xl shadow-2xl z-50 overflow-hidden animate-fade-in max-h-60 overflow-y-auto custom-scrollbar">
+            <div className="absolute top-full right-0 mt-2 w-full bg-white border border-slate-200 rounded-xl shadow-xl z-50 overflow-hidden animate-fade-in max-h-60 overflow-y-auto">
               {customCtas.length === 0 ? (
-                 <div className="p-3 text-xs text-center text-neutral-500">
+                 <div className="p-3 text-xs text-center text-slate-400">
                    Нет сохраненных CTA. Добавь их в настройках.
                  </div>
               ) : (
@@ -208,7 +208,7 @@ export const StepResult: React.FC<StepResultProps> = ({
                         onAddPost(cta.text);
                         setShowCtaPicker(false);
                      }}
-                     className="w-full text-left p-3 text-sm text-neutral-300 hover:bg-neutral-800 hover:text-white border-b border-neutral-800 last:border-0"
+                     className="w-full text-left p-3 text-sm text-slate-600 hover:bg-indigo-50 hover:text-indigo-700 border-b border-slate-100 last:border-0"
                    >
                      {cta.text}
                    </button>
@@ -219,8 +219,8 @@ export const StepResult: React.FC<StepResultProps> = ({
         </div>
       </div>
 
-      <div className="bg-neutral-900/80 border border-neutral-800 rounded-2xl p-6 mb-24">
-         <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-24 shadow-sm">
+         <h3 className="text-lg font-bold mb-3 flex items-center gap-2 text-slate-800">
             Что поправить?
          </h3>
          <form onSubmit={handleSubmitRefine} className="flex flex-col gap-3">
@@ -230,7 +230,7 @@ export const StepResult: React.FC<StepResultProps> = ({
                 placeholder="Опиши правки..."
                 disabled={isRefining}
                 rows={3}
-                className="w-full bg-black border border-neutral-700 rounded-xl p-4 text-white placeholder-neutral-500 focus:border-purple-500 outline-none transition-all disabled:opacity-50 resize-y"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 text-slate-800 placeholder-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition-all disabled:opacity-50 resize-y"
              />
              <div className="flex justify-end">
                 <button
@@ -238,8 +238,8 @@ export const StepResult: React.FC<StepResultProps> = ({
                     disabled={!refineText.trim() || isRefining}
                     className={`px-6 py-3 rounded-xl font-bold whitespace-nowrap transition-all ${
                         !refineText.trim() || isRefining
-                            ? 'bg-neutral-800 text-neutral-500 cursor-not-allowed'
-                            : 'bg-white text-black hover:bg-neutral-200'
+                            ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                            : 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg shadow-indigo-200'
                     }`}
                 >
                     {isRefining ? 'Исправляем...' : 'Применить правки'}
@@ -249,7 +249,7 @@ export const StepResult: React.FC<StepResultProps> = ({
       </div>
 
       {/* Action Bar */}
-      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 bg-neutral-900/90 backdrop-blur border border-neutral-700 p-2 rounded-2xl shadow-2xl z-50 w-[90%] max-w-sm justify-center">
+      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 bg-white/90 backdrop-blur border border-slate-200 p-2 rounded-2xl shadow-xl z-50 w-[90%] max-w-sm justify-center">
 
         {/* Save Draft */}
         <button
@@ -257,13 +257,13 @@ export const StepResult: React.FC<StepResultProps> = ({
            disabled={isRefining}
            className={`p-3 rounded-xl transition-all disabled:opacity-50 ${
              isSaved
-               ? 'bg-green-500/20 text-green-400 border border-green-500/30'
-               : 'bg-neutral-800 text-neutral-400 hover:bg-neutral-700 hover:text-white'
+               ? 'bg-green-50 text-green-600 border border-green-200'
+               : 'bg-slate-50 text-slate-400 hover:bg-slate-100 hover:text-indigo-600'
            }`}
            title="Сохранить в черновики"
         >
            {isSaved ? (
-             <span className="text-sm font-bold px-2">Сохранено ✓</span>
+             <span className="text-sm font-bold px-2">Сохранено</span>
            ) : (
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
@@ -277,9 +277,9 @@ export const StepResult: React.FC<StepResultProps> = ({
         <button
             onClick={handleCopyAll}
             disabled={isRefining}
-            className="flex-1 px-4 py-3 bg-white text-black rounded-xl font-bold transition-all flex items-center justify-center gap-2 text-sm disabled:opacity-50 hover:bg-neutral-200"
+            className="flex-1 px-4 py-3 bg-indigo-600 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 text-sm disabled:opacity-50 hover:bg-indigo-700 shadow-lg shadow-indigo-200"
         >
-            {copiedIndex === -1 ? "Скопировано! ✓" : "Копировать весь тред"}
+            {copiedIndex === -1 ? "Скопировано!" : "Копировать весь тред"}
         </button>
       </div>
     </div>
